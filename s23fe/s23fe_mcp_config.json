@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "quantum-flex": {
-      "url": "http://100.64.32.57:9000/sse"
+      "url": "http://100.108.244.64:9000/sse"
     }
   }
 }

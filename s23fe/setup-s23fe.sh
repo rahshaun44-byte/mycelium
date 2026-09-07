@@ -2,13 +2,13 @@
 # ==============================================================================
 # Quantum Flex: Samsung Galaxy S23 FE Automated Termux Setup Script
 # ==============================================================================
-# Target Host: 100.64.32.57 (quantumflex)
-# Mobile Node: 100.75.127.109 (rahshauns-s23-fe)
+# Target Host: 100.108.244.64 (quantumflex)
+# Mobile Node: 100.73.34.101 (rahshauns-s23-fe)
 # ==============================================================================
 
 set -e
 
-HOST_IP="100.64.32.57"
+HOST_IP="100.108.244.64"
 MCP_PORT="9000"
 DASH_PORT="8000"
 API_PORT="8080"
@@ -29,9 +29,13 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ -f "$SCRIPT_DIR/qflex_cli.py" ]; then
     cp "$SCRIPT_DIR/qflex_cli.py" "$HOME/qflex_cli.py"
-    chmod +x "$HOME/qflex_cli.py"
-    echo "[+] Deployed qflex_cli.py to $HOME/qflex_cli.py"
+    echo "[+] Copied local qflex_cli.py to $HOME/qflex_cli.py"
+else
+    echo "[*] Downloading qflex_cli.py from http://$HOST_IP:$API_PORT/s23fe/qflex_cli.py..."
+    curl -s -o "$HOME/qflex_cli.py" "http://$HOST_IP:$API_PORT/s23fe/qflex_cli.py"
+    echo "[+] Downloaded qflex_cli.py to $HOME/qflex_cli.py"
 fi
+chmod +x "$HOME/qflex_cli.py" 
 
 # 3. Configure Claude / MCP Client Config
 mkdir -p "$HOME/.config/claude"
@@ -39,7 +43,7 @@ cat << 'EOF' > "$HOME/.config/claude/config.json"
 {
   "mcpServers": {
     "quantum-flex": {
-      "url": "http://100.64.32.57:9000/sse"
+      "url": "http://100.108.244.64:9000/sse"
     }
   }
 }
