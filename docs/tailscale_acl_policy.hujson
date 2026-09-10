@@ -58,13 +58,13 @@
     "tag:mobile": ["autogroup:owner"]
   },
 
-  // SSH Access Policy (Zero Root Direct Logins Enforced)
+  // SSH Access Policy (Zero Root Direct Logins Enforced via Identities)
   "ssh": [
     {
       "action": "accept",
-      "src": ["100.108.244.64"], // Only Fedora Yoga master can SSH
-      "dst": ["100.82.53.126"],   // To HP Pavilion worker
-      "users": ["rocky"]          // Strictly unprivileged operator; root denied
+      "src": ["autogroup:owner"],
+      "dst": ["autogroup:self"],
+      "users": ["rocky", "autogroup:nonroot"]
     }
   ]
 }

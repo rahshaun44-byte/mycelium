@@ -70,13 +70,14 @@
     {
       "action": "accept",
       "src": [
-        "100.108.244.64"
+        "autogroup:owner"
       ],
       "dst": [
-        "100.82.53.126"
+        "autogroup:self"
       ],
       "users": [
-        "rocky"
+        "rocky",
+        "autogroup:nonroot"
       ]
     }
   ]
