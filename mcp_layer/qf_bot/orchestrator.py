@@ -217,7 +217,7 @@ STATUS             : {hs_data['posture']}"""
             resp_text = f"""[SOVEREIGN MESH MATRIX // TAILSCALE WIREGUARD]
 ● qfx-yoga    : 100.108.244.64 | Host Engine | ONLINE (0.1ms) | TPM 2.0 Matched
 ● qf-pavilion : 100.82.53.126  | Worker (Kafka Stream) | ONLINE (0.8ms) | P2P Direct
-● qfx-pixel   : 100.108.65.22  | Mobile (Pixel 11 Pro) | ONLINE (12ms) | P2P Direct
+● qfx-pixel   : 100.100.105.0  | Mobile (Pixel 11 Pro) | ONLINE (12ms) | P2P Direct
 ● qfx-edge    : 100.73.34.101  | Operator (S23 FE) | ONLINE (14ms) | P2P Direct"""
             bot_msg = {
                 "id": str(uuid.uuid4()),

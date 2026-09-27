@@ -89,7 +89,7 @@ Report network topology, node reachability, and peer latency crisply and objecti
         nodes = {
             "qfx-yoga": {"ip": "100.108.244.64", "role": "Primary Engine", "status": "ONLINE", "latency": "0.1ms"},
             "qf-pavilion": {"ip": "100.82.53.126", "role": "Stream Compute / Kafka Broker", "status": "ONLINE", "latency": "0.8ms"},
-            "qfx-pixel": {"ip": "100.108.65.22", "role": "Mobile Operator", "status": "ONLINE", "latency": "12ms"},
+            "qfx-pixel": {"ip": "100.100.105.0", "role": "Tactical HUD & Mobile Sentinel (Pixel 11 Pro)", "status": "ONLINE", "latency": "12ms"},
             "qfx-edge": {"ip": "100.73.34.101", "role": "Field Operator", "status": "ONLINE", "latency": "14ms"},
         }
         return nodes
