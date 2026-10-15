@@ -1,26 +1,56 @@
 {
-  "tagOwners": {
-    "tag:worker": ["autogroup:owner"]
-  },
   "hosts": {
-    "yoga": "100.108.244.64",
-    "pavilion": "100.82.53.126",
-    "pixel": "100.108.65.22",
-    "s23": "100.73.34.101"
+    "yoga": "100.72.3.123",
+    "g6": "100.117.194.89",
+    "pixel": "100.126.7.67"
   },
   "acls": [
-    { "action": "accept", "src": ["autogroup:member"], "dst": ["autogroup:self:*"] },
-    { "action": "accept", "src": ["yoga"], "dst": ["tag:worker:9092", "tag:worker:8090", "tag:worker:22"] },
-    { "action": "accept", "src": ["pixel", "s23"], "dst": ["tag:worker:8090"] }
+    {
+      "action": "accept",
+      "src": ["yoga"],
+      "dst": ["g6:22", "g6:3389", "g6:8090", "g6:9092"]
+    },
+    {
+      "action": "accept",
+      "src": ["pixel"],
+      "dst": ["yoga:11434"]
+    }
   ],
-  "ssh": [
-    { "action": "check", "checkPeriod": "12h", "src": ["autogroup:member"], "dst": ["autogroup:self"], "users": ["autogroup:nonroot"] },
-    { "action": "accept", "src": ["autogroup:member"], "dst": ["tag:worker"], "users": ["rocky"] }
-  ],
+  "ssh": [],
   "tests": [
-    { "src": "yoga", "accept": ["pavilion:9092", "pavilion:8090", "pavilion:22"] },
-    { "src": "pixel", "accept": ["pavilion:8090"], "deny": ["pavilion:9092", "pavilion:22"] },
-    { "src": "s23", "accept": ["pavilion:8090"], "deny": ["pavilion:9092", "pavilion:22"] },
-    { "src": "pavilion", "deny": ["yoga:9444", "yoga:8080", "yoga:8000", "yoga:9050", "yoga:22"] }
+    {
+      "src": "pixel",
+      "accept": [
+        "yoga:11434"
+      ],
+      "deny": [
+        "yoga:22", "yoga:80", "yoga:443", "yoga:5432", "yoga:8000", "yoga:8080", "yoga:9000",
+        "g6:22", "g6:3389", "g6:8090", "g6:9092"
+      ]
+    },
+    {
+      "src": "yoga",
+      "accept": [
+        "g6:22",
+        "g6:3389",
+        "g6:8090",
+        "g6:9092"
+      ],
+      "deny": [
+        "pixel:22", "pixel:80", "pixel:443", "pixel:5555"
+      ]
+    },
+    {
+      "src": "g6",
+      "deny": [
+        "yoga:22", "yoga:8000", "yoga:8080", "yoga:9444"
+      ]
+    }
+  ],
+  "nodeAttrs": [
+    {
+      "target": ["autogroup:member"],
+      "attr": ["funnel"]
+    }
   ]
 }
