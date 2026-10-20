@@ -51,7 +51,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[o.strip() for o in os.environ.get(
         "QF_BOT_CORS_ORIGINS",
-        "https://localhost,http://localhost,capacitor://localhost,https://fedora.taild1b451.ts.net",
+        "https://localhost,http://localhost,capacitor://localhost,https://quant-yoga-7-2-in-1-14akp10.tailad5805.ts.net",
     ).split(",") if o.strip()],
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
@@ -605,7 +605,7 @@ async def mobile_bootstrap():
         "schema": "qf-mobile-v1",
         "version": "2.6.0-qf-m1",
         "node": "quantumflex",
-        "master_mesh_ip": "100.108.244.64",
+        "master_mesh_ip": "100.72.3.123",
         "authenticated": True,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "capabilities": [
