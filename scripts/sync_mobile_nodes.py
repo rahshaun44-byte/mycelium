@@ -95,11 +95,9 @@ def probe_tailscale_node(ip: str, timeout_ms: int = 1500) -> Tuple[str, Optional
 def get_live_tailscale_mesh() -> List[Tuple[str, str]]:
     """Discovers current live mesh nodes dynamically from Tailscale status without stale assumptions."""
     default_nodes = [
-        ("qfx-yoga (Master)", "100.108.244.64"),
-        ("pixel-11-pro (Custody)", "100.108.65.22"),
-        ("pixel-11-pro-1 (Active)", "100.100.105.0"),
-        ("rahshauns-s23-fe (Field)", "100.73.34.101"),
-        ("qf-pavilion-worker", "100.82.53.126"),
+        ("qfx-yoga (Master)", "100.72.3.123"),
+        ("pixel-11-pro (Custody)", "100.108.225.93"),
+        ("g6pro (Kafka Broker)", "100.104.7.120"),
     ]
     try:
         p = subprocess.run(["tailscale", "status", "--json"], capture_output=True, text=True, timeout=3.0)
@@ -109,14 +107,14 @@ def get_live_tailscale_mesh() -> List[Tuple[str, str]]:
             self_node = data.get("Self", {})
             self_ips = self_node.get("TailscaleIPs", [])
             if self_ips:
-                hname = self_node.get("HostName", "fedora")
+                hname = self_node.get("HostName", "qfx-yoga")
                 discovered.append((f"{hname} (Master)", self_ips[0]))
             peers = data.get("Peer", {})
             for _, peer in peers.items():
                 p_ips = peer.get("TailscaleIPs", [])
                 p_name = peer.get("HostName", "peer")
                 if p_ips:
-                    role_tag = "Custody/Active" if "pixel" in p_name.lower() else ("Field" if "s23" in p_name.lower() else "Peer")
+                    role_tag = "Custody/Active" if "pixel" in p_name.lower() else ("Broker" if "g6" in p_name.lower() else "Peer")
                     discovered.append((f"{p_name} ({role_tag})", p_ips[0]))
             if discovered:
                 return discovered
@@ -169,10 +167,6 @@ def inspect_adb_device(serial: str) -> Dict[str, Any]:
         info["qf_node"] = "pixel-11-pro"
         info["qf_role"] = "shard-custodian"
         info["authority"] = "Titan M2 Hardware Security Module (OOB Signer)"
-    elif "S23" in model or "SM-S711" in model:
-        info["qf_node"] = "s23-fe"
-        info["qf_role"] = "field-observer"
-        info["authority"] = "Security Observer Only (Substrate Mutations Strictly DENIED)"
     else:
         info["qf_node"] = "unknown"
         info["qf_role"] = "observer"
