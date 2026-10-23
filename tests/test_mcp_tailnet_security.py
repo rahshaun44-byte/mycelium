@@ -22,7 +22,7 @@ LOCAL_STATUS = {
     "Peer": {
         "other": {
             "DNSName": "other.tailad5805.ts.net.",
-            "TailscaleIPs": ["100.73.34.101"],
+            "TailscaleIPs": ["100.64.0.99"],
         },
     },
 }
@@ -87,7 +87,7 @@ def test_local_node_hosts_and_origins_reach_sse_transport(monkeypatch, authority
     "authority,origin,status",
     [
         ("attacker.example:9000", None, 421),
-        ("100.73.34.101:9000", None, 421),
+        ("100.64.0.99:9000", None, 421),
         ("100.72.3.123:8080", None, 421),
         (DNS_NAME + ".attacker.example", None, 421),
         (DNS_NAME, "https://attacker.example", 403),

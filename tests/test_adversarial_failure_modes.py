@@ -113,7 +113,7 @@ def test_bot_server_approval_unauthenticated(monkeypatch, tmp_path):
         {},
         {"x-api-key": "bad_token"},
         {"x-api-key": "bot_secret_key"},  # a shared key no longer confers authority
-        {"x-forwarded-for": "100.100.105.0", "x-device-model": "Pixel 11 Pro",
+        {"x-forwarded-for": "100.108.225.93", "x-device-model": "Pixel 11 Pro",
          "x-device-serial": "65290DLKX002JD", "x-operator-id": "chief_architect_pixel11pro"},
     ]
     for headers in denied:
