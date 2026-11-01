@@ -7,7 +7,7 @@
 **Applicant Entity:** Individual (Natural Person / Option A)  
 **Applicant Name:** Rahshaun Chambers  
 **Applicant Email:** `rbyte44@gmail.com`  
-**Applicant Phone:** `+1 (570) 237-1750`  
+**Applicant Phone:** `[Redacted for Public Repository / On File with NLnet]`  
 **Country:** US  
 **Repository Website:** `https://github.com/rahshaun44-byte/mycelium`  
 **Recorded Timestamp:** 2026-10-31  
